@@ -62,7 +62,7 @@ class CompanyController
 
         // top 5 most expensive pending bills
         $topPendingBills = Bill::query()->where('company_id', $id)
-            ->where('status', BillStatus::PENDING->value)
+            ->pendingBills()
             ->whereHas('users')
             ->orderByDesc('payment')
             ->take(5)->get();
